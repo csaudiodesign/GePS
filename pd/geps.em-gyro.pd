@@ -1,0 +1,96 @@
+#N canvas 539 268 619 377 10;
+#X obj 8 86 inlet~ L;
+#X obj 8 234 *~ 0.707;
+#X obj 8 278 tanh~;
+#X obj 8 310 outlet~ L;
+#X obj 78 234 *~ 0.707;
+#X obj 78 278 tanh~;
+#X obj 78 86 inlet~ R;
+#X obj 78 310 outlet~ R;
+#X msg 236 217 \$1 10;
+#X obj 236 239 line~ 1;
+#X obj 8 256 *~;
+#X obj 78 256 *~;
+#X obj 197 107 * 1;
+#X obj 197 129 * 0.8;
+#X obj 411 310 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 197 325 geps.listproc;
+#X obj 197 193 t b f f;
+#X obj 197 151 slide.cs 4 20;
+#N canvas 0 22 768 471 (subpatch) 0;
+#X array \$0-visual 100 float 3;
+#A 0 0.418819 0.417198 0.417091 0.415931 0.413971 0.411129 0.407417
+0.403019 0.401045 0.405494 0.405344 0.404294 0.402466 0.399686 0.396099
+0.392202 0.388205 0.386059 0.385402 0.384232 0.382925 0.38155 0.379878
+0.377309 0.373977 0.370281 0.366499 0.36274 0.359124 0.355468 0.35158
+0.347368 0.34286 0.33826 0.333711 0.329214 0.324789 0.320455 0.318864
+0.327052 0.331583 0.332184 0.331501 0.330141 0.328425 0.326443 0.324342
+0.322027 0.320745 0.323184 0.336734 0.356703 0.369899 0.377235 0.379537
+0.378923 0.377689 0.37853 0.385415 0.387707 0.387331 0.387039 0.386801
+0.385936 0.384417 0.381995 0.378697 0.374972 0.373906 0.399657 0.434997
+0.457556 0.4708 0.477335 0.477448 0.476019 0.472817 0.468609 0.46426
+0.459496 0.454294 0.448599 0.442457 0.436207 0.429756 0.423133 0.416329
+0.41297 0.41707 0.417059 0.416171 0.414687 0.41278 0.417981 0.436319
+0.442561 0.442152 0.440414 0.440077 0.447113;
+#X coords 0 1 99 -1 200 140 1 0 0;
+#X restore 411 164 graph;
+#X obj 197 351 tabwrite \$0-visual;
+#X obj 277 85 inlet slide-up;
+#X obj 374 85 inlet slide-down;
+#X obj 105 151 f \$0;
+#X msg 105 173 set \$1-visual;
+#X obj 197 217 f \$0;
+#X msg 197 262 symbol \$1-visual;
+#X obj 105 129 loadbang;
+#X obj 314 106 loadbang;
+#X obj 277 106 f \$1;
+#X text 434 308 turn on visualisation;
+#X obj 374 106 f \$2;
+#X obj 277 127 max 1;
+#X obj 374 127 max 1;
+#X obj 197 85 inlet sensor;
+#X obj 197 172 + 0;
+#N canvas 881 565 689 233 header 0;
+#X obj 2 2 cnv 15 300 60 empty empty geps.em-gyro 10 12 0 12 -240757
+-86277 0;
+#X obj 304 0 geps.abstraction-header;
+#X text 11 25 Emphasize amplification by movement;
+#X text 11 37 Input: Audio \, gyro_all \, smoothing factors;
+#X coords 0 -1 1 1 604 64 1 0 0;
+#X restore 8 9 pd header;
+#X connect 0 0 1 0;
+#X connect 1 0 10 0;
+#X connect 2 0 3 0;
+#X connect 4 0 11 0;
+#X connect 5 0 7 0;
+#X connect 6 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 1;
+#X connect 9 0 11 1;
+#X connect 10 0 2 0;
+#X connect 11 0 5 0;
+#X connect 12 0 13 0;
+#X connect 13 0 17 0;
+#X connect 14 0 15 2;
+#X connect 15 0 19 0;
+#X connect 16 0 24 0;
+#X connect 16 1 15 1;
+#X connect 16 2 8 0;
+#X connect 17 0 34 0;
+#X connect 20 0 28 0;
+#X connect 21 0 30 0;
+#X connect 22 0 23 0;
+#X connect 23 0 19 0;
+#X connect 24 0 25 0;
+#X connect 25 0 15 0;
+#X connect 26 0 22 0;
+#X connect 27 0 28 0;
+#X connect 27 0 30 0;
+#X connect 28 0 31 0;
+#X connect 30 0 32 0;
+#X connect 31 0 17 1;
+#X connect 32 0 17 2;
+#X connect 33 0 12 0;
+#X connect 33 0 12 1;
+#X connect 34 0 16 0;

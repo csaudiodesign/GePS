@@ -1,0 +1,40 @@
+#N canvas 0 22 520 309 10;
+#X msg 90 137 ports;
+#X msg 67 72 close;
+#X obj 24 201 comport 5 38400;
+#X msg 24 112 open 5;
+#X obj 24 21 r serial.comport;
+#X msg 110 72 info;
+#X obj 111 226 s serial.statusport;
+#X obj 24 45 select open close info;
+#X obj 24 137 t a b;
+#X obj 24 270 outlet sensordata;
+#X obj 51 247 outlet cycletrig;
+#X obj 198 21 comment 300 10 monaco ? 0 255 0 0 If you have trouble
+opening the serial port \, check the output of the "ports" message
+and make sure that the correct portnumber is being opened.;
+#X obj 260 206 popup 124 25 #ffffff popup 1---/dev/tty.Bluetooth-PDA-Sync
+2---/dev/tty.Bluetooth-Serial-1 3---/dev/tty.Bluetooth-Serial-2;
+#X obj 330 133 r serial.statusport;
+#X obj 330 155 route ports;
+#X obj 90 160 t a b;
+#X msg 260 177 options;
+#X msg 330 177 append \$1---\$2;
+#X connect 0 0 15 0;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+#X connect 2 1 6 0;
+#X connect 3 0 8 0;
+#X connect 4 0 7 0;
+#X connect 5 0 2 0;
+#X connect 7 0 3 0;
+#X connect 7 1 1 0;
+#X connect 7 2 5 0;
+#X connect 8 0 2 0;
+#X connect 8 1 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 17 0;
+#X connect 15 0 2 0;
+#X connect 15 1 16 0;
+#X connect 16 0 12 0;
+#X connect 17 0 12 0;
