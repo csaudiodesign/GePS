@@ -1,19 +1,10 @@
-#N canvas 740 22 589 410 10;
+#N canvas 837 130 498 454 10;
 #X obj 13 377 geps.sensorsim;
 #X floatatom 53 353 5 0 0 0 - - -;
-#X obj 13 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 13 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 94 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 390 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 390 159 readsf~ 2;
-#X obj 390 110 t b b;
-#X msg 390 134 1;
-#X obj 441 182 spigot;
-#X obj 474 160 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 496 159 loop on/off;
 #N canvas 791 420 450 300 notes 0;
 #X obj 14 16 env~ 16384 8192;
 #X floatatom 14 38 5 0 0 0 - - -;
@@ -32,199 +23,18 @@
 #X restore 13 321 pd notes;
 #X obj 210 7 geps.transients;
 #X obj 211 90 geps.mod-template;
-#X msg 421 134 open sounds/SaxHits.wav;
 #X obj 211 176 geps.freezer;
-#N canvas 71 167 766 678 mixer 0;
-#X obj 177 66 inlet~;
-#X obj 257 66 inlet~;
-#X obj 192 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 192 324 pack 1 10;
-#X obj 209 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 177 647 outlet~;
-#X obj 177 374 *~;
-#X obj 257 373 *~;
-#X obj 573 631 writesf~ 2;
-#X msg 573 586 start;
-#X msg 612 586 stop;
-#X msg 573 609 open -bytes 3 /tmp/rec3.wav;
-#X obj 17 403 tanh~;
-#X obj 388 597 vline~;
-#X obj 409 548 loadbang;
-#X msg 409 573 1 100;
-#X obj 257 647 outlet~;
-#X obj 177 614 *~;
-#X obj 257 614 *~;
-#X obj 17 86 catch~ out1;
-#X obj 97 403 tanh~;
-#X obj 97 86 catch~ out1;
-#X obj 192 299 / 127;
-#X obj 388 526 r mixer.main-gain;
-#X obj 17 374 *~;
-#X obj 97 374 *~;
-#X obj 32 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 32 324 pack 1 10;
-#X obj 49 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 32 299 / 127;
-#X obj 307 66 inlet~;
-#X obj 387 66 inlet~;
-#X obj 322 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 322 324 pack 1 10;
-#X obj 339 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 307 374 *~;
-#X obj 387 373 *~;
-#X obj 322 299 / 127;
-#X obj 437 66 inlet~;
-#X obj 517 66 inlet~;
-#X obj 452 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 452 324 pack 1 10;
-#X obj 469 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 437 374 *~;
-#X obj 517 373 *~;
-#X obj 452 299 / 127;
-#X obj 32 348 vline~;
-#X obj 192 348 vline~;
-#X obj 322 348 vline~;
-#X obj 452 348 vline~;
-#X obj 567 66 inlet~;
-#X obj 647 66 inlet~;
-#X obj 582 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 582 324 pack 1 10;
-#X obj 599 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 567 374 *~;
-#X obj 647 373 *~;
-#X obj 582 299 / 127;
-#X obj 582 348 vline~;
-#X obj 590 134 route gain time;
-#X obj 590 114 r mixer.ch4;
-#X obj 460 134 route gain time;
-#X obj 330 134 route gain time;
-#X obj 200 134 route gain time;
-#X obj 40 134 route gain time;
-#X obj 40 114 r mixer.ch0;
-#X obj 200 114 r mixer.ch1;
-#X obj 330 114 r mixer.ch2;
-#X obj 460 114 r mixer.ch3;
-#X text 16 10 GePS Audio Mixer;
-#X obj 177 38 cnv 15 120 24 empty empty CHANNEL-01 12 12 0 12 -108864
--262144 0;
-#X obj 307 38 cnv 15 120 24 empty empty CHANNEL-02 12 12 0 12 -108864
--262144 0;
-#X obj 437 38 cnv 15 120 24 empty empty CHANNEL-03 12 12 0 12 -108864
--262144 0;
-#X obj 567 38 cnv 15 120 24 empty empty CHANNEL-04 12 12 0 12 -108864
--262144 0;
-#X obj 17 38 cnv 15 120 24 empty empty CATCH-CHANNEL 12 12 0 12 -51264
--262144 0;
-#X obj 257 592 geps.summing;
-#X obj 326 572 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 177 592 geps.summing;
-#X connect 0 0 6 0;
-#X connect 1 0 7 0;
-#X connect 2 0 4 0;
-#X connect 2 0 22 0;
-#X connect 3 0 47 0;
-#X connect 6 0 77 0;
-#X connect 7 0 75 0;
-#X connect 9 0 8 0;
-#X connect 10 0 8 0;
-#X connect 11 0 8 0;
-#X connect 12 0 77 0;
-#X connect 13 0 17 1;
-#X connect 13 0 18 1;
-#X connect 14 0 15 0;
-#X connect 15 0 13 0;
-#X connect 17 0 5 0;
-#X connect 17 0 8 0;
-#X connect 18 0 16 0;
-#X connect 18 0 8 1;
-#X connect 19 0 24 0;
-#X connect 20 0 75 0;
-#X connect 21 0 25 0;
-#X connect 22 0 3 0;
-#X connect 23 0 13 0;
-#X connect 24 0 12 0;
-#X connect 25 0 20 0;
-#X connect 26 0 28 0;
-#X connect 26 0 29 0;
-#X connect 27 0 46 0;
-#X connect 29 0 27 0;
-#X connect 30 0 35 0;
-#X connect 31 0 36 0;
-#X connect 32 0 34 0;
-#X connect 32 0 37 0;
-#X connect 33 0 48 0;
-#X connect 35 0 77 0;
-#X connect 36 0 75 0;
-#X connect 37 0 33 0;
-#X connect 38 0 43 0;
-#X connect 39 0 44 0;
-#X connect 40 0 42 0;
-#X connect 40 0 45 0;
-#X connect 41 0 49 0;
-#X connect 43 0 77 0;
-#X connect 44 0 75 0;
-#X connect 45 0 41 0;
-#X connect 46 0 24 1;
-#X connect 46 0 25 1;
-#X connect 47 0 7 1;
-#X connect 47 0 6 1;
-#X connect 48 0 36 1;
-#X connect 48 0 35 1;
-#X connect 49 0 44 1;
-#X connect 49 0 43 1;
-#X connect 50 0 55 0;
-#X connect 51 0 56 0;
-#X connect 52 0 54 0;
-#X connect 52 0 57 0;
-#X connect 53 0 58 0;
-#X connect 55 0 77 0;
-#X connect 56 0 75 0;
-#X connect 57 0 53 0;
-#X connect 58 0 56 1;
-#X connect 58 0 55 1;
-#X connect 59 0 52 0;
-#X connect 59 1 53 1;
-#X connect 60 0 59 0;
-#X connect 61 0 40 0;
-#X connect 61 1 41 1;
-#X connect 62 0 32 0;
-#X connect 62 1 33 1;
-#X connect 63 0 2 0;
-#X connect 63 1 3 1;
-#X connect 64 0 26 0;
-#X connect 64 1 27 1;
-#X connect 65 0 64 0;
-#X connect 66 0 63 0;
-#X connect 67 0 62 0;
-#X connect 68 0 61 0;
-#X connect 75 0 18 0;
-#X connect 76 0 75 1;
-#X connect 76 0 77 1;
-#X connect 77 0 17 0;
-#X restore 210 294 pd mixer ------------------;
-#X obj 210 317 dac~;
 #N canvas 495 22 919 672 serialCheck 0;
 #X obj 1 1 cnv 15 140 80 empty serial.statusdisp-rcv SERIAL-STATUS:
-12 12 0 12 -225271 -42246 0;
-#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv READY 12 12 0 14
--225271 -42246 0;
+12 12 0 12 -258699 -262144 0;
+#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv ERROR 12 12 0 14
+-258699 -262144 0;
 #X obj 171 222 sel 0 1 2;
 #X msg 171 195 0;
 #X msg 200 195 1;
 #X msg 232 195 2;
 #X obj 1 42 cnv 15 120 15 serial.latencydisp-snd serial.latencydisp-rcv
-latency:7.3ms 12 6 0 12 -225271 -42246 0;
+empty 12 6 0 12 -258699 -262144 0;
 #X msg 14 284 label latency:\$1ms;
 #X obj 14 325 s serial.latencydisp-rcv;
 #X obj 14 263 r serial.latency;
@@ -241,7 +51,7 @@ latency:7.3ms 12 6 0 12 -225271 -42246 0;
 #X msg 492 366 \; serial.comport symbol close \, symbol info;
 #X obj 492 344 route bang;
 #X obj 12 60 bng 15 250 50 0 serial.openbutton-snd serial.openbutton-rcv
-close 20 7 0 12 -166441 -262144 -66577;
+reset 20 7 0 12 -260818 -241291 -262144;
 #X obj 492 405 route bang;
 #X msg 492 427 \; serial.comport symbol open \, symbol info \;;
 #X obj 492 465 route bang;
@@ -257,7 +67,7 @@ close 20 7 0 12 -166441 -262144 -66577;
 #X obj 476 38 route open port;
 #X obj 519 64 sel -1;
 #X obj 124 42 cnv 15 1 1 serial.portmsg-snd serial.portmsg-rcv empty
-12 6 0 12 -225271 -262144 0;
+12 6 0 12 -258699 -262144 0;
 #X obj 552 91 t b;
 #X obj 254 101 delay 3000;
 #X msg 635 115 \; serial.portmsg-rcv label no_port \, vis_size 120
@@ -542,6 +352,8 @@ color 6 26 \; serial.portmsg-rcv color 6 \, label \; buttongate 3 \;
 #X obj 23 712 > 1;
 #X obj 91 584 t b f;
 #X obj 10 26 r sensorvisualize;
+#X obj 225 595 geps.transTrigger;
+#X obj 225 615 s t.flick;
 #X connect 0 0 2 0;
 #X connect 1 0 2 1;
 #X connect 2 0 30 0;
@@ -586,6 +398,7 @@ color 6 26 \; serial.portmsg-rcv color 6 \, label \; buttongate 3 \;
 #X connect 38 0 31 1;
 #X connect 39 0 30 1;
 #X connect 40 0 61 0;
+#X connect 40 0 91 0;
 #X connect 41 0 42 0;
 #X connect 43 0 40 0;
 #X connect 44 0 40 2;
@@ -643,6 +456,7 @@ color 6 26 \; serial.portmsg-rcv color 6 \, label \; buttongate 3 \;
 #X connect 89 0 79 0;
 #X connect 89 1 83 1;
 #X connect 90 0 39 0;
+#X connect 91 0 92 0;
 #X restore 16 121 pd receive;
 #X obj 16 98 geps.serialport;
 #X msg 171 251 \; serial.statusdisp-rcv color 13 0 \; serial.statusmsg-rcv
@@ -650,7 +464,7 @@ label ERROR \; serial.statusmsg-rcv color 13 0 \; serial.openbutton-rcv
 label reset \; serial.openbutton-rcv color 14 15 0 \; serial.latencydisp-rcv
 label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 1 \;;
-#N canvas 1 22 451 485 sensordisplay 0;
+#N canvas 550 204 451 485 sensordisplay 0;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array accel_x 100 float 4;
 #X coords 0 1 99 -1 200 140 1 0 0;
@@ -743,16 +557,16 @@ label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 #X text 35 90 plot sensor data;
 #X obj 12 90 tgl 18 0 get-rid-of-the-intlet-2 get-rid-of-the-outlet-2
 empty 17 7 0 10 -232576 -1 -45076 0 1;
-#N canvas 2 22 708 688 metaControl 0;
+#N canvas 67 22 708 688 metaControl 0;
 #X msg 323 326 \; mixer.ch1 time 10 \, gain 127;
 #X msg 20 263 \; mixer.ch1 time 10 \, gain 0;
 #X msg 20 303 \; mixer.ch2 time 10 \, gain 0;
 #X msg 323 366 \; mixer.ch2 time 10 \, gain 127;
-#X msg 323 406 \; mixer.ch3 time 10 \, gain 127;
+#X msg 343 406 \; mixer.ch3 time 10 \, gain 127;
 #X msg 20 343 \; mixer.ch3 time 10 \, gain 0;
-#X msg 343 286 \; mixer.ch0 time 10 \, gain 127;
+#X msg 323 286 \; mixer.ch0 time 10 \, gain 127;
 #X msg 20 223 \; mixer.ch0 time 10 \, gain 0;
-#X msg 323 446 \; mixer.ch4 time 10 \, gain 120;
+#X msg 343 446 \; mixer.ch4 time 10 \, gain 120;
 #X msg 20 383 \; mixer.ch4 time 10 \, gain 0;
 #X msg 40 502 \; mixer.summing type 0 \, factor 1;
 #X msg 40 463 \; mixer.summing type 1 \, factor 7;
@@ -825,6 +639,7 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X obj 18 139 comment 0 14 Monaco ? 0 0 0 0 Initial Settings;
 #X obj 322 139 comment 0 14 Monaco ? 0 0 0 0 Performance;
 #X obj 542 139 comment 0 14 Monaco ? 0 0 0 0 Modules;
+#X obj 71 38 loadbang;
 #X connect 14 0 7 0;
 #X connect 14 0 1 0;
 #X connect 14 0 2 0;
@@ -846,9 +661,8 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X connect 28 0 9 0;
 #X connect 29 0 37 0;
 #X connect 30 0 0 0;
+#X connect 30 0 6 0;
 #X connect 30 0 3 0;
-#X connect 30 0 4 0;
-#X connect 30 0 8 0;
 #X connect 30 3 34 0;
 #X connect 31 0 39 0;
 #X connect 32 0 40 0;
@@ -862,6 +676,7 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X connect 45 0 39 0;
 #X connect 46 0 45 0;
 #X connect 47 0 45 0;
+#X connect 52 0 25 0;
 #X restore 160 2 pd metaControl;
 #X obj 12 120 tgl 18 0 get-rid-of-the-intlet-3 get-rid-of-the-outlet-3
 empty 17 7 0 10 -232576 -1 -45076 0 1;
@@ -891,28 +706,188 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X connect 19 0 18 0;
 #X coords 0 -1 1 1 140 200 1 0 0;
 #X restore 13 99 pd controls;
+#X obj 210 317 dac~ 1 2;
+#N canvas 71 167 766 678 mixer 0;
+#X obj 192 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 192 324 pack 1 10;
+#X obj 209 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 177 647 outlet~;
+#X obj 177 374 *~;
+#X obj 257 373 *~;
+#X obj 573 631 writesf~ 2;
+#X msg 573 586 start;
+#X msg 612 586 stop;
+#X msg 573 609 open -bytes 3 /tmp/rec3.wav;
+#X obj 17 403 tanh~;
+#X obj 388 597 vline~;
+#X obj 409 548 loadbang;
+#X msg 409 573 1 100;
+#X obj 257 647 outlet~;
+#X obj 177 614 *~;
+#X obj 257 614 *~;
+#X obj 97 403 tanh~;
+#X obj 192 299 / 127;
+#X obj 388 526 r mixer.main-gain;
+#X obj 17 374 *~;
+#X obj 97 374 *~;
+#X obj 32 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 32 324 pack 1 10;
+#X obj 49 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 32 299 / 127;
+#X obj 322 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 322 324 pack 1 10;
+#X obj 339 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 307 374 *~;
+#X obj 387 373 *~;
+#X obj 322 299 / 127;
+#X obj 452 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 452 324 pack 1 10;
+#X obj 469 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 437 374 *~;
+#X obj 517 373 *~;
+#X obj 452 299 / 127;
+#X obj 32 348 vline~;
+#X obj 192 348 vline~;
+#X obj 322 348 vline~;
+#X obj 452 348 vline~;
+#X obj 582 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 582 324 pack 1 10;
+#X obj 599 274 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 567 374 *~;
+#X obj 647 373 *~;
+#X obj 582 299 / 127;
+#X obj 582 348 vline~;
+#X obj 590 134 route gain time;
+#X obj 590 114 r mixer.ch4;
+#X obj 460 134 route gain time;
+#X obj 330 134 route gain time;
+#X obj 200 134 route gain time;
+#X obj 40 134 route gain time;
+#X obj 40 114 r mixer.ch0;
+#X obj 200 114 r mixer.ch1;
+#X obj 330 114 r mixer.ch2;
+#X obj 460 114 r mixer.ch3;
+#X text 16 10 GePS Audio Mixer;
+#X obj 177 38 cnv 15 120 24 empty empty CHANNEL-01 12 12 0 12 -108864
+-262144 0;
+#X obj 307 38 cnv 15 120 24 empty empty CHANNEL-02 12 12 0 12 -108864
+-262144 0;
+#X obj 437 38 cnv 15 120 24 empty empty CHANNEL-03 12 12 0 12 -108864
+-262144 0;
+#X obj 567 38 cnv 15 120 24 empty empty CHANNEL-04 12 12 0 12 -108864
+-262144 0;
+#X obj 17 38 cnv 15 120 24 empty empty CATCH-CHANNEL 12 12 0 12 -51264
+-262144 0;
+#X obj 257 592 geps.summing;
+#X obj 326 572 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 177 592 geps.summing;
+#X obj 177 66 catch~ ch-01.L;
+#X obj 257 86 catch~ ch-01.R;
+#X obj 307 66 catch~ ch-02.L;
+#X obj 387 86 catch~ ch-02.R;
+#X obj 437 66 catch~ ch-03.L;
+#X obj 517 86 catch~ ch-03.R;
+#X obj 567 66 catch~ ch-04.L;
+#X obj 647 86 catch~ ch-04.R;
+#X obj 17 66 catch~ def.L;
+#X obj 97 86 catch~ def.R;
+#X connect 0 0 2 0;
+#X connect 0 0 18 0;
+#X connect 1 0 39 0;
+#X connect 4 0 67 0;
+#X connect 5 0 65 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 6 0;
+#X connect 10 0 67 0;
+#X connect 11 0 15 1;
+#X connect 11 0 16 1;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 15 0 3 0;
+#X connect 15 0 6 0;
+#X connect 16 0 14 0;
+#X connect 16 0 6 1;
+#X connect 17 0 65 0;
+#X connect 18 0 1 0;
+#X connect 19 0 11 0;
+#X connect 20 0 10 0;
+#X connect 21 0 17 0;
+#X connect 22 0 24 0;
+#X connect 22 0 25 0;
+#X connect 23 0 38 0;
+#X connect 25 0 23 0;
+#X connect 26 0 28 0;
+#X connect 26 0 31 0;
+#X connect 27 0 40 0;
+#X connect 29 0 67 0;
+#X connect 30 0 65 0;
+#X connect 31 0 27 0;
+#X connect 32 0 34 0;
+#X connect 32 0 37 0;
+#X connect 33 0 41 0;
+#X connect 35 0 67 0;
+#X connect 36 0 65 0;
+#X connect 37 0 33 0;
+#X connect 38 0 20 1;
+#X connect 38 0 21 1;
+#X connect 39 0 5 1;
+#X connect 39 0 4 1;
+#X connect 40 0 30 1;
+#X connect 40 0 29 1;
+#X connect 41 0 36 1;
+#X connect 41 0 35 1;
+#X connect 42 0 44 0;
+#X connect 42 0 47 0;
+#X connect 43 0 48 0;
+#X connect 45 0 67 0;
+#X connect 46 0 65 0;
+#X connect 47 0 43 0;
+#X connect 48 0 46 1;
+#X connect 48 0 45 1;
+#X connect 49 0 42 0;
+#X connect 49 1 43 1;
+#X connect 50 0 49 0;
+#X connect 51 0 32 0;
+#X connect 51 1 33 1;
+#X connect 52 0 26 0;
+#X connect 52 1 27 1;
+#X connect 53 0 0 0;
+#X connect 53 1 1 1;
+#X connect 54 0 22 0;
+#X connect 54 1 23 1;
+#X connect 55 0 54 0;
+#X connect 56 0 53 0;
+#X connect 57 0 52 0;
+#X connect 58 0 51 0;
+#X connect 65 0 16 0;
+#X connect 66 0 65 1;
+#X connect 66 0 67 1;
+#X connect 67 0 15 0;
+#X connect 68 0 4 0;
+#X connect 69 0 5 0;
+#X connect 70 0 29 0;
+#X connect 71 0 30 0;
+#X connect 72 0 35 0;
+#X connect 73 0 36 0;
+#X connect 74 0 45 0;
+#X connect 75 0 46 0;
+#X connect 76 0 20 0;
+#X connect 77 0 21 0;
+#X restore 210 294 pd mixer;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
 #X connect 3 0 0 2;
-#X connect 4 0 6 0;
-#X connect 5 0 15 1;
-#X connect 5 0 16 6;
-#X connect 5 1 15 2;
-#X connect 5 1 16 7;
-#X connect 5 2 8 0;
-#X connect 6 0 7 0;
-#X connect 6 1 14 0;
-#X connect 7 0 5 0;
-#X connect 8 0 4 0;
-#X connect 9 0 8 1;
-#X connect 12 0 16 0;
-#X connect 12 0 15 1;
-#X connect 12 1 16 1;
-#X connect 12 1 15 2;
-#X connect 13 0 16 2;
-#X connect 13 1 16 3;
-#X connect 14 0 5 0;
-#X connect 15 0 16 4;
-#X connect 15 1 16 5;
-#X connect 16 0 17 0;
-#X connect 16 1 17 1;
+#X connect 11 0 10 0;
+#X connect 11 1 10 1;
