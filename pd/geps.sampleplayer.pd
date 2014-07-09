@@ -1,27 +1,27 @@
-#N canvas 1074 582 623 486 10;
+#N canvas 364 319 621 568 10;
 #X obj 201 246 soundfiler;
-#X obj 59 220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 56 220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 279 107 table \$0-test.L;
 #X obj 378 107 table \$0-test.R;
 #X obj 201 131 f \$0;
 #X obj 201 107 loadbang;
-#X obj 85 411 line~;
-#X obj 85 284 f;
+#X obj 82 411 line~;
+#X obj 82 284 f;
 #X obj 208 437 tabread4~ \$0-test.R;
-#X obj 85 437 tabread4~ \$0-test.L;
-#X obj 85 458 outlet~ L;
-#X obj 208 458 outlet~ R;
+#X obj 82 437 tabread4~ \$0-test.L;
+#X obj 82 498 outlet~ L;
+#X obj 208 498 outlet~ R;
 #X obj 228 287 sampstoms~;
-#X obj 85 364 pack 1 1;
+#X obj 82 364 pack 1 1;
 #X obj 201 267 t f f;
-#X obj 112 304 f;
-#X obj 85 219 t b b;
-#X msg 85 389 0 \, \$1 \$2;
+#X obj 109 304 f;
+#X obj 82 219 t b b;
+#X msg 82 389 0 \, \$1 \$2;
 #X msg 201 154 read -resize sounds/bowl.aif \$1-test.L \$1-test.R;
 #X obj 236 131 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 108 334 / 1;
+#X obj 103 334 / 1;
 #X obj 9 138 openpanel;
 #X obj 9 86 inlet;
 #X obj 70 138 symbol;
@@ -29,7 +29,6 @@
 #X obj 165 180 f \$0;
 #X msg 138 225 read -resize \$1 \$2-test.L \$2-test.R;
 #X obj 138 203 pack s f;
-#X obj 9 105 route open read bang speed;
 #N canvas 881 565 689 233 header 0;
 #X obj 2 2 cnv 15 300 60 empty empty geps.em-gyro 10 12 0 12 -240757
 -86277 0;
@@ -40,6 +39,10 @@
 #X restore 8 9 pd header;
 #X text 207 173 connect this if you want a default sound to be loaded
 ;
+#X obj 9 105 route open read bang speed gain;
+#X obj 82 474 *~ 1;
+#X obj 209 474 *~ 1;
+#X obj 155 389 clip 0 1;
 #X connect 0 0 14 0;
 #X connect 1 0 16 0;
 #X connect 4 0 18 0;
@@ -47,8 +50,8 @@
 #X connect 6 0 8 0;
 #X connect 6 0 9 0;
 #X connect 7 0 13 0;
-#X connect 8 0 11 0;
-#X connect 9 0 10 0;
+#X connect 8 0 32 0;
+#X connect 9 0 31 0;
 #X connect 12 1 15 1;
 #X connect 13 0 17 0;
 #X connect 14 0 7 1;
@@ -60,14 +63,19 @@
 #X connect 19 0 4 0;
 #X connect 20 0 13 1;
 #X connect 21 0 23 0;
-#X connect 22 0 28 0;
+#X connect 22 0 30 0;
 #X connect 23 0 24 0;
 #X connect 24 0 27 0;
 #X connect 24 1 25 0;
 #X connect 25 0 27 1;
 #X connect 26 0 0 0;
 #X connect 27 0 26 0;
-#X connect 28 0 21 0;
-#X connect 28 1 23 0;
-#X connect 28 2 16 0;
-#X connect 28 3 20 1;
+#X connect 30 0 21 0;
+#X connect 30 1 23 0;
+#X connect 30 2 16 0;
+#X connect 30 3 20 1;
+#X connect 30 4 33 0;
+#X connect 31 0 10 0;
+#X connect 32 0 11 0;
+#X connect 33 0 32 1;
+#X connect 33 0 31 1;
