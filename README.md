@@ -1,7 +1,7 @@
 GePS
 =====
 
-Gesture base Performance System
+Gesture based Performance System
 
 _Using a data glove as Musical Instrument_
 
