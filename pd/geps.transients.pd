@@ -164,7 +164,7 @@
 #X obj 605 512 r windowSize;
 #X obj 289 559 *~;
 #X obj 289 584 *~;
-#X obj 314 390 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 314 390 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 314 483 random 20000;
 #X obj 513 762 s tb-length;
@@ -191,15 +191,15 @@ transientbuffer.R;
 transientbuffer.R;
 #X obj 61 178 t f f f f f;
 #X obj 306 215 switch~;
-#X obj 306 195 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 306 195 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 306 175 r sp-dsp;
 #X text 305 232 proc switch;
 #X obj 61 86 inlet mod_switch;
 #X obj 398 195 sel 0 1;
 #X obj 40 110 cnv 15 160 60 label-transients-snd label-transients-rcv
-GePS_TRANSIENTS 20 12 0 12 -24198 -33289 0;
-#X obj 61 137 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+GePS_TRANSIENTS 20 12 0 12 -261689 -66577 0;
+#X obj 61 137 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 81 136 turn module on/off;
 #X obj 212 120 route switch;
