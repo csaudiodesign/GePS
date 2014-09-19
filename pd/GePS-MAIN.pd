@@ -1,4 +1,4 @@
-#N canvas 876 22 498 454 10;
+#N canvas 246 318 498 454 10;
 #X obj 13 377 geps.sensorsim;
 #X floatatom 53 353 5 0 0 0 - - -;
 #X obj 13 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -26,15 +26,15 @@
 #X obj 211 176 geps.freezer;
 #N canvas 46 90 919 672 serialCheck 0;
 #X obj 1 1 cnv 15 140 80 empty serial.statusdisp-rcv SERIAL-STATUS:
-12 12 0 12 -166441 -66577 0;
-#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv CLOSED 12 12 0
-14 -166441 -66577 0;
+12 12 0 12 -258699 -262144 0;
+#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv ERROR 12 12 0 14
+-258699 -262144 0;
 #X obj 171 222 sel 0 1 2;
 #X msg 171 195 0;
 #X msg 200 195 1;
 #X msg 232 195 2;
 #X obj 1 42 cnv 15 120 15 serial.latencydisp-snd serial.latencydisp-rcv
-empty 12 6 0 12 -225271 -42246 0;
+empty 12 6 0 12 -258699 -262144 0;
 #X msg 14 284 label latency:\$1ms;
 #X obj 14 325 s serial.latencydisp-rcv;
 #X obj 14 263 r serial.latency;
@@ -51,7 +51,7 @@ empty 12 6 0 12 -225271 -42246 0;
 #X msg 492 366 \; serial.comport symbol close \, symbol info;
 #X obj 492 344 route bang;
 #X obj 12 60 bng 15 250 50 0 serial.openbutton-snd serial.openbutton-rcv
-open 20 7 0 12 -225271 -262144 -42246;
+reset 20 7 0 12 -260818 -241291 -262144;
 #X obj 492 405 route bang;
 #X msg 492 427 \; serial.comport symbol open \, symbol info \;;
 #X obj 492 465 route bang;
@@ -66,8 +66,8 @@ open 20 7 0 12 -225271 -262144 -42246;
 #X obj 476 64 t f f;
 #X obj 476 38 route open port;
 #X obj 519 64 sel -1;
-#X obj 1 42 cnv 15 120 15 serial.portmsg-snd serial.portmsg-rcv no_port
-12 6 0 12 -166441 -262144 0;
+#X obj 124 42 cnv 15 1 1 serial.portmsg-snd serial.portmsg-rcv empty
+12 6 0 12 -258699 -262144 0;
 #X obj 552 91 t b;
 #X obj 254 101 delay 3000;
 #X msg 635 115 \; serial.portmsg-rcv label no_port \, vis_size 120
@@ -102,7 +102,7 @@ label ERROR \; serial.statusmsg-rcv color 13 0 \; serial.openbutton-rcv
 label reset \; serial.openbutton-rcv color 14 15 0 \; serial.latencydisp-rcv
 label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 1 \;;
-#N canvas 131 135 451 485 sensordisplay 0;
+#N canvas 63 183 451 485 sensordisplay 0;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array accel_x 100 float 4;
 #X coords 0 1 99 -1 200 140 1 0 0;
@@ -130,11 +130,9 @@ label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 #X coords 0 485 1 484 446 480 0;
 #X restore 15 165 pd sensordisplay;
 #X obj 559 465 r serial.reset;
-#N canvas 82 22 543 324 serialport 0;
+#N canvas 87 26 543 324 serialport 0;
 #X msg 100 101 ports;
 #X msg 77 62 close;
-#X obj 34 211 comport 5 38400;
-#X msg 34 127 open 5;
 #X obj 34 11 r serial.comport;
 #X msg 120 62 info;
 #X obj 121 236 s serial.statusport;
@@ -153,23 +151,25 @@ and make sure that the correct portnumber is being opened.;
 #X obj 100 171 t b a;
 #X obj 84 127 comment 300 10 monaco ? 0 255 0 0 <---------------;
 #X obj 144 101 comment 300 10 monaco ? 0 255 0 0 <-----;
-#X connect 0 0 16 0;
-#X connect 1 0 2 0;
-#X connect 2 0 9 0;
-#X connect 2 1 6 0;
-#X connect 3 0 8 0;
-#X connect 4 0 7 0;
-#X connect 5 0 2 0;
-#X connect 7 0 3 0;
-#X connect 7 1 1 0;
-#X connect 7 2 5 0;
-#X connect 8 0 2 0;
-#X connect 8 1 10 0;
-#X connect 12 0 13 0;
-#X connect 13 0 14 0;
-#X connect 15 0 14 0;
-#X connect 16 0 15 0;
-#X connect 16 1 2 0;
+#X msg 34 127 open 5;
+#X obj 34 211 comport 5 38400;
+#X connect 0 0 14 0;
+#X connect 1 0 18 0;
+#X connect 2 0 5 0;
+#X connect 3 0 18 0;
+#X connect 5 0 17 0;
+#X connect 5 1 1 0;
+#X connect 5 2 3 0;
+#X connect 6 0 18 0;
+#X connect 6 1 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 13 0 12 0;
+#X connect 14 0 13 0;
+#X connect 14 1 18 0;
+#X connect 17 0 6 0;
+#X connect 18 0 7 0;
+#X connect 18 1 4 0;
 #X restore 16 98 pd serialport;
 #N canvas 210 22 486 803 parse 0;
 #X obj 133 16 inlet;
@@ -218,11 +218,20 @@ and make sure that the correct portnumber is being opened.;
 #X floatatom 64 379 5 0 0 0 - - -;
 #X obj 200 69 delay 1000;
 #X obj 173 45 t b b;
+#X obj 382 442 != 65535;
+#X obj 383 465 sel 1;
+#X obj 383 487 counter;
+#X floatatom 383 508 5 0 0 0 - - -;
+#X msg 447 433 0;
+#X obj 382 420 spigot;
+#X obj 415 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 0 0 5 0;
 #X connect 1 0 2 0;
 #X connect 2 0 40 0;
 #X connect 3 0 17 0;
 #X connect 3 0 4 0;
+#X connect 3 0 46 0;
 #X connect 3 1 29 1;
 #X connect 3 2 30 1;
 #X connect 3 3 31 1;
@@ -272,6 +281,12 @@ and make sure that the correct portnumber is being opened.;
 #X connect 39 0 19 1;
 #X connect 40 0 19 1;
 #X connect 40 1 39 0;
+#X connect 41 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 44 0;
+#X connect 45 0 43 2;
+#X connect 46 0 41 0;
+#X connect 47 0 46 1;
 #X restore 133 53 pd SerialByteParse7;
 #X floatatom 151 175 5 0 0 0 - - -;
 #X floatatom 170 205 5 0 0 0 - - -;
