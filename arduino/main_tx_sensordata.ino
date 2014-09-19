@@ -46,6 +46,8 @@ void setup()
 	accelgyro.initialize();
 	
 	accelgyro.setFullScaleGyroRange(32768);
+	
+	accelgyro.setFullScaleAccelRange(MPU6050_ACCEL_FS_16);
 }
 
 // bit startpoint for parsing the serial data
@@ -57,17 +59,13 @@ void loop()
 	accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 	
 	// values between -32768 and 32768 now go from 0 to 65536
-	ax += 32768;
-	ay += 32768;
-	az += 32768;
+	ax += 16384;
+	ay += 16384;
+	az += 16384;
 	
-	gx *= 0.99;
-	gy *= 0.99;
-	gz *= 0.99;
-	
-	gx += 32768;
-	gy += 32768;
-	gz += 32768;
+	gx += 16384;
+	gy += 16384;
+	gz += 16384;
 	
 	if (ax != 65535 && ay != 65535 && az != 65535)
 	// 65535 is reserved for startpoint
