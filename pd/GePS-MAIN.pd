@@ -1,4 +1,4 @@
-#N canvas 246 318 498 454 10;
+#N canvas 667 22 498 454 10;
 #X obj 13 377 geps.sensorsim;
 #X floatatom 53 353 5 0 0 0 - - -;
 #X obj 13 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -26,15 +26,15 @@
 #X obj 211 176 geps.freezer;
 #N canvas 46 90 919 672 serialCheck 0;
 #X obj 1 1 cnv 15 140 80 empty serial.statusdisp-rcv SERIAL-STATUS:
-12 12 0 12 -258699 -262144 0;
-#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv ERROR 12 12 0 14
--258699 -262144 0;
+12 12 0 12 -166441 -66577 0;
+#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv CLOSED 12 12 0
+14 -166441 -66577 0;
 #X obj 171 222 sel 0 1 2;
 #X msg 171 195 0;
 #X msg 200 195 1;
 #X msg 232 195 2;
 #X obj 1 42 cnv 15 120 15 serial.latencydisp-snd serial.latencydisp-rcv
-empty 12 6 0 12 -258699 -262144 0;
+empty 12 6 0 12 -225271 -42246 0;
 #X msg 14 284 label latency:\$1ms;
 #X obj 14 325 s serial.latencydisp-rcv;
 #X obj 14 263 r serial.latency;
@@ -51,7 +51,7 @@ empty 12 6 0 12 -258699 -262144 0;
 #X msg 492 366 \; serial.comport symbol close \, symbol info;
 #X obj 492 344 route bang;
 #X obj 12 60 bng 15 250 50 0 serial.openbutton-snd serial.openbutton-rcv
-reset 20 7 0 12 -260818 -241291 -262144;
+open 20 7 0 12 -225271 -262144 -42246;
 #X obj 492 405 route bang;
 #X msg 492 427 \; serial.comport symbol open \, symbol info \;;
 #X obj 492 465 route bang;
@@ -66,8 +66,8 @@ reset 20 7 0 12 -260818 -241291 -262144;
 #X obj 476 64 t f f;
 #X obj 476 38 route open port;
 #X obj 519 64 sel -1;
-#X obj 124 42 cnv 15 1 1 serial.portmsg-snd serial.portmsg-rcv empty
-12 6 0 12 -258699 -262144 0;
+#X obj 1 42 cnv 15 120 15 serial.portmsg-snd serial.portmsg-rcv no_port
+12 6 0 12 -166441 -262144 0;
 #X obj 552 91 t b;
 #X obj 254 101 delay 3000;
 #X msg 635 115 \; serial.portmsg-rcv label no_port \, vis_size 120
@@ -102,7 +102,7 @@ label ERROR \; serial.statusmsg-rcv color 13 0 \; serial.openbutton-rcv
 label reset \; serial.openbutton-rcv color 14 15 0 \; serial.latencydisp-rcv
 label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 1 \;;
-#N canvas 63 183 451 485 sensordisplay 0;
+#N canvas 63 181 451 485 sensordisplay 0;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array accel_x 100 float 4;
 #X coords 0 1 99 -1 200 140 1 0 0;
@@ -519,56 +519,7 @@ and make sure that the correct portnumber is being opened.;
 #X connect 74 1 68 1;
 #X connect 75 0 33 0;
 #X restore 16 121 pd parse;
-#N canvas 132 112 602 384 interpretation 0;
-#X obj 19 157 expr (abs($f1) + abs($f2) + abs($f3)) * 0.33;
-#X obj 73 226 expr abs($f1 + $f2);
-#X obj 73 300 s gyrodelta_all;
-#X obj 19 14 r gyro_x;
-#X obj 280 15 r gyro_z;
-#X obj 149 15 r gyro_y;
-#X obj 19 180 s gyro_all;
-#X obj 204 278 geps.transTrigger;
-#X obj 204 300 s t.flick;
-#X obj 73 248 t f f;
-#X obj 46 107 s gyrodelta_x;
-#X obj 176 107 s gyrodelta_y;
-#X obj 307 107 s gyrodelta_z;
-#X obj 46 65 geps.delta;
-#X obj 176 65 geps.delta;
-#X obj 307 65 geps.delta;
-#X obj 19 39 t f f;
-#X obj 149 39 t f f;
-#X obj 280 38 t f f;
-#X obj 46 86 t f f;
-#X obj 176 86 t f f;
-#X obj 46 126 comment 0 10 monaco ? 0 255 0 0 gyrodelta_x;
-#X obj 176 126 comment 0 10 monaco ? 0 0 128 0 gyrodelta_y;
-#X obj 305 126 comment 0 10 monaco ? 0 0 0 255 gyrodelta_z;
-#X obj 72 318 comment 0 10 monaco ? 0 128 0 128 gyrodelta_all;
-#X obj 18 198 comment 0 10 monaco ? 0 200 0 200 gyro_all;
-#X obj 203 319 comment 0 10 monaco ? 0 160 160 0 t.flick;
-#X connect 0 0 6 0;
-#X connect 1 0 9 0;
-#X connect 3 0 16 0;
-#X connect 4 0 18 0;
-#X connect 5 0 17 0;
-#X connect 7 0 8 0;
-#X connect 9 0 2 0;
-#X connect 9 1 7 0;
-#X connect 13 0 19 0;
-#X connect 14 0 20 0;
-#X connect 15 0 12 0;
-#X connect 16 0 0 0;
-#X connect 16 1 13 0;
-#X connect 17 0 0 1;
-#X connect 17 1 14 0;
-#X connect 18 0 0 2;
-#X connect 18 1 15 0;
-#X connect 19 0 10 0;
-#X connect 19 1 1 0;
-#X connect 20 0 11 0;
-#X connect 20 1 1 1;
-#X restore 15 144 pd interpretation;
+#X obj 15 144 geps.sensormath;
 #X connect 2 0 53 0;
 #X connect 2 0 42 0;
 #X connect 2 1 52 0;
