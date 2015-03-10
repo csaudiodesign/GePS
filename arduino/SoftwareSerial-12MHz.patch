@@ -1,0 +1,33 @@
+--- SoftwareSerial.cpp		2015-02-08 21:23:24.000000000 +0100
++++ SoftwareSerial-patched.cpp	2015-03-10 13:21:45.000000000 +0100
+@@ -123,6 +123,30 @@
+ 
+ const int XMIT_START_ADJUSTMENT = 6;
+ 
++// 12 MHz support courtesy of:
++// https://fuzz4dev.wordpress.com/tag/12mhz/
++
++#elif F_CPU == 12000000
++
++static const DELAY_TABLE PROGMEM table[] =
++{
++  // baud     rxcenter    rxintra     rxstop      tx
++  { 115200,   1,          11,         11,         8,     },
++  { 57600,    6,          26,         26,         23,    },
++  { 38400,    14,         41,         42,         39,    },
++  { 31250,    19,         51,         52,         49,    },
++  { 28800,    23,         56,         56,         53,    },
++  { 19200,    37,         86,         86,         83,    },
++  { 14400,    52,         116,        116,        113,   },
++  { 9600,     82,         175,        175,        173,   },
++  { 4800,     172,        354,        354,        351,   },
++  { 2400,     350,        711,        711,        708,   },
++  { 1200,     707,        1425,       1425,       1422,  },
++  { 300,      2850,       5711,       5711,       5708,  },
++};
++
++const int XMIT_START_ADJUSTMENT = 5;
++
+ #else
+ 
+ #error This version of SoftwareSerial supports only 20, 16 and 8MHz processors

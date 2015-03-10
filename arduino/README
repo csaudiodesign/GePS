@@ -1,0 +1,4 @@
+To add 12MHz support to SoftwareSerial.cpp on MacOS X, Arduino 1.6.0, download
+the patch and apply it with the following command:
+
+patch /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/SoftwareSerial/SoftwareSerial.cpp < SoftwareSerial-12MHz.patch
