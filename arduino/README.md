@@ -1,3 +1,5 @@
+*The commands listed below are executed from the directory containing the cloned GePS repository.*
+
 # Arduino IDE 1.0.x
 
 To add 12MHz support to SoftwareSerial.cpp on MacOS X, download the patch and
@@ -21,7 +23,7 @@ names. The patch also increases the FIFO rate in order to reduce the polling
 rate.    
 
     git clone https://github.com/csaudiodesign/ssdn_minibee.git
-    patch ~/Documents/Arduino/libraries/MPU9150/MPU9150_9Axis_MotionApps41.h < ssdn_minibee/arduino/MPU9150_9Axis_MotionApps41.h.patch
+    patch ~/Documents/Arduino/libraries/MPU9150/MPU9150_9Axis_MotionApps41.h < GePS/arduino/MPU9150_9Axis_MotionApps41.h.patch
     mkdir -p ~/Documents/Arduino/hardware
     cp -r ssdn_minibee/hardware-1.6/minibee ~/Documents/Arduino/hardware/
 
