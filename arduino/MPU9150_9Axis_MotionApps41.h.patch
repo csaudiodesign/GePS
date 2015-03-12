@@ -1,0 +1,59 @@
+--- MPU9150/MPU9150_9Axis_MotionApps41.h	2015-03-10 16:25:15.000000000 +0100
++++ MPU9150/MPU9150_9Axis_MotionApps41-patched.h	2015-03-11 22:52:44.000000000 +0100
+@@ -58,7 +58,6 @@
+ 
+         typedef void prog_void;
+         typedef char prog_char;
+-        typedef unsigned char prog_uchar;
+         typedef int8_t prog_int8_t;
+         typedef uint8_t prog_uint8_t;
+         typedef int16_t prog_int16_t;
+@@ -121,7 +120,7 @@
+ // this block of memory gets written to the MPU on start-up, and it seems
+ // to be volatile memory, so it has to be done each time (it only takes ~1
+ // second though)
+-const prog_uchar dmpMemory[MPU9150_DMP_CODE_SIZE] PROGMEM = {
++const unsigned char dmpMemory[MPU9150_DMP_CODE_SIZE] PROGMEM = {
+     // bank 0, 256 bytes
+     0xFB, 0x00, 0x00, 0x3E, 0x00, 0x0B, 0x00, 0x36, 0x00, 0x01, 0x00, 0x02, 0x00, 0x03, 0x00, 0x00,
+     0x00, 0x65, 0x00, 0x54, 0xFF, 0xEF, 0x00, 0x00, 0xFA, 0x80, 0x00, 0x0B, 0x12, 0x82, 0x00, 0x01,
+@@ -262,7 +261,7 @@
+     0xDC, 0xB9, 0xA7, 0xF1, 0x26, 0x26, 0x26, 0xD8, 0xD8, 0xFF
+ };
+ 
+-const prog_uchar dmpConfig[MPU9150_DMP_CONFIG_SIZE] PROGMEM = {
++const unsigned char dmpConfig[MPU9150_DMP_CONFIG_SIZE] PROGMEM = {
+ //  BANK    OFFSET  LENGTH  [DATA]
+     0x02,   0xEC,   0x04,   0x00, 0x47, 0x7D, 0x1A,   // ?
+     0x03,   0x82,   0x03,   0x4C, 0xCD, 0x6C,         // FCFG_1 inv_set_gyro_calibration
+@@ -302,7 +301,7 @@
+     0x07,   0x67,   0x01,   0x9A,                     // ?
+     0x07,   0x68,   0x04,   0xF1, 0x28, 0x30, 0x38,   // CFG_12 inv_send_accel -> inv_construct3_fifo
+     0x07,   0x8D,   0x04,   0xF1, 0x28, 0x30, 0x38,   // ??? CFG_12 inv_send_mag -> inv_construct3_fifo
+-    0x02,   0x16,   0x02,   0x00, 0x03                // D_0_22 inv_set_fifo_rate
++    0x02,   0x16,   0x02,   0x00, 0x01                // D_0_22 inv_set_fifo_rate
+ 
+     // This very last 0x01 WAS a 0x09, which drops the FIFO rate down to 20 Hz. 0x07 is 25 Hz,
+     // 0x01 is 100Hz. Going faster than 100Hz (0x00=200Hz) tends to result in very noisy data.
+@@ -312,7 +311,7 @@
+     // the FIFO output at the desired rate. Handling FIFO overflow cleanly is also a good idea.
+ };
+ 
+-const prog_uchar dmpUpdates[MPU9150_DMP_UPDATES_SIZE] PROGMEM = {
++const unsigned char dmpUpdates[MPU9150_DMP_UPDATES_SIZE] PROGMEM = {
+     0x01,   0xB2,   0x02,   0xFF, 0xF5,
+     0x01,   0x90,   0x04,   0x0A, 0x0D, 0x97, 0xC0,
+     0x00,   0xA3,   0x01,   0x00,
+@@ -462,9 +461,9 @@
+             setZGyroOffset(zgOffset);
+ 
+             DEBUG_PRINTLN(F("Setting X/Y/Z gyro user offsets to zero..."));
+-            setXGyroOffsetUser(0);
+-            setYGyroOffsetUser(0);
+-            setZGyroOffsetUser(0);
++            setXGyroOffset(0);
++            setYGyroOffset(0);
++            setZGyroOffset(0);
+ 
+             DEBUG_PRINTLN(F("Writing final memory update 1/19 (function unknown)..."));
+             uint8_t dmpUpdate[16], j;
