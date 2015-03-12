@@ -15,8 +15,7 @@ Install i2cdevlib:
     git clone https://github.com/jrowberg/i2cdevlib.git
     cp -r i2cdevlib/Arduino/I2Cdev i2cdevlib/Arduino/MPU9150 ~/Documents/Arduino/libraries/
 
-*minibee / sensestage package (our patched version):*   
-
+**minibee / sensestage package (our patched version):**   
 patch the file MPU9150_9Axis_MotionApps41.h, it contains functions with wrong
 names. The patch also increases the FIFO rate in order to reduce the polling
 rate.    
