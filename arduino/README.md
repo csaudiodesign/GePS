@@ -12,19 +12,17 @@ Download and install Arduino IDE 1.6.1
 
 Install i2cdevlib:   
 
-    git clone git@github.com:jrowberg/i2cdevlib.git
+    git clone https://github.com/jrowberg/i2cdevlib.git
     cp -r i2cdevlib/Arduino/I2Cdev i2cdevlib/Arduino/MPU9150 ~/Documents/Arduino/libraries/
+
+*minibee / sensestage package (our patched version):*   
 
 patch the file MPU9150_9Axis_MotionApps41.h, it contains functions with wrong
 names. The patch also increases the FIFO rate in order to reduce the polling
-rate.   
+rate.    
 
-    wget https://raw.githubusercontent.com/csaudiodesign/GePS/minibee-hardware/arduino/MPU9150_9Axis_MotionApps41.h.patch
-    patch ~/Documents/Arduino/libraries/MPU9150/MPU9150_9Axis_MotionApps41.h < MPU9150_9Axis_MotionApps41.h.patch
-
-minibee / sensestage package (our patched version):   
-
-    git clone git@github.com:csaudiodesign/ssdn_minibee.git
+    git clone https://github.com/csaudiodesign/ssdn_minibee.git
+    patch ~/Documents/Arduino/libraries/MPU9150/MPU9150_9Axis_MotionApps41.h < ssdn_minibee/arduino/MPU9150_9Axis_MotionApps41.h.patch
     mkdir -p ~/Documents/Arduino/hardware
     cp -r ssdn_minibee/hardware-1.6/minibee ~/Documents/Arduino/hardware/
 
@@ -38,4 +36,5 @@ Since 1.6.x, the inclusion of Wire.h seems broken. This fixes it:
     cp -r /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/avr/libraries/Wire ~/Documents/Arduino/libraries/
 
 Open the sketch main_tx_sensordata.ino in the Arduino IDE. As of now, it's
-possible to compile it, but upload still fails on the testet machine. WIP.
+possible to compile it, but upload still fails on the tested machine. WIP.
+
