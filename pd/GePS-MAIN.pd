@@ -1,40 +1,24 @@
-#N canvas 667 22 498 454 10;
-#X obj 13 377 geps.sensorsim;
-#X floatatom 53 353 5 0 0 0 - - -;
-#X obj 13 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#N canvas 1148 112 385 401 10;
+#X obj 275 292 geps.sensorsim;
+#X floatatom 315 270 5 0 0 0 - - -;
+#X obj 275 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 94 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 356 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 791 420 450 300 notes 0;
-#X obj 14 16 env~ 16384 8192;
-#X floatatom 14 38 5 0 0 0 - - -;
-#X obj 119 148 s reverb;
-#X obj 119 76 t b b;
-#X obj 194 100 1;
-#X obj 119 100 symbol mode;
-#X obj 119 124 pack s 0;
-#X obj 193 169 overdrive~;
-#X connect 0 0 1 0;
-#X connect 3 0 5 0;
-#X connect 3 1 4 0;
-#X connect 4 0 6 1;
-#X connect 5 0 6 0;
-#X connect 6 0 2 0;
-#X restore 13 321 pd notes;
 #X obj 210 7 geps.transients;
 #X obj 211 90 geps.mod-template;
 #X obj 211 176 geps.freezer;
 #N canvas 46 90 919 672 serialCheck 0;
 #X obj 1 1 cnv 15 140 80 empty serial.statusdisp-rcv SERIAL-STATUS:
-12 12 0 12 -166441 -66577 0;
-#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv CLOSED 12 12 0
-14 -166441 -66577 0;
+12 12 0 12 -258699 -262144 0;
+#X obj 1 19 cnv 15 80 20 empty serial.statusmsg-rcv ERROR 12 12 0 14
+-258699 -262144 0;
 #X obj 171 222 sel 0 1 2;
 #X msg 171 195 0;
 #X msg 200 195 1;
 #X msg 232 195 2;
 #X obj 1 42 cnv 15 120 15 serial.latencydisp-snd serial.latencydisp-rcv
-empty 12 6 0 12 -225271 -42246 0;
+empty 12 6 0 12 -258699 -262144 0;
 #X msg 14 284 label latency:\$1ms;
 #X obj 14 325 s serial.latencydisp-rcv;
 #X obj 14 263 r serial.latency;
@@ -51,7 +35,7 @@ empty 12 6 0 12 -225271 -42246 0;
 #X msg 492 366 \; serial.comport symbol close \, symbol info;
 #X obj 492 344 route bang;
 #X obj 12 60 bng 15 250 50 0 serial.openbutton-snd serial.openbutton-rcv
-open 20 7 0 12 -225271 -262144 -42246;
+reset 20 7 0 12 -260818 -241291 -262144;
 #X obj 492 405 route bang;
 #X msg 492 427 \; serial.comport symbol open \, symbol info \;;
 #X obj 492 465 route bang;
@@ -66,8 +50,8 @@ open 20 7 0 12 -225271 -262144 -42246;
 #X obj 476 64 t f f;
 #X obj 476 38 route open port;
 #X obj 519 64 sel -1;
-#X obj 1 42 cnv 15 120 15 serial.portmsg-snd serial.portmsg-rcv no_port
-12 6 0 12 -166441 -262144 0;
+#X obj 124 42 cnv 15 1 1 serial.portmsg-snd serial.portmsg-rcv empty
+12 6 0 12 -258699 -262144 0;
 #X obj 552 91 t b;
 #X obj 254 101 delay 3000;
 #X msg 635 115 \; serial.portmsg-rcv label no_port \, vis_size 120
@@ -724,7 +708,7 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X connect 28 0 30 0;
 #X coords 0 -1 1 1 140 210 1 0 0;
 #X restore 13 99 pd controls;
-#X obj 210 317 dac~ 1 2;
+#X obj 210 292 dac~ 1 2;
 #N canvas 4 22 766 678 mixer 0;
 #X obj 192 157 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -903,9 +887,10 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X connect 75 0 46 0;
 #X connect 76 0 20 0;
 #X connect 77 0 21 0;
-#X restore 210 294 pd mixer;
+#X restore 210 269 pd mixer;
+#X obj 13 323 geps.version;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
 #X connect 3 0 0 2;
-#X connect 11 0 10 0;
-#X connect 11 1 10 1;
+#X connect 10 0 9 0;
+#X connect 10 1 9 1;
