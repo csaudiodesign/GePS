@@ -12,7 +12,6 @@
 #X obj 213 65 namecanvas gepsversion;
 #X text 11 21 PureData performance patcher;
 #X obj 11 176 prepend text 11 38;
-#X text 11 38 version 4.1: minibee + mpu6050 / 38400 baud;
 #X connect 0 0 4 0;
 #X connect 2 0 6 0;
 #X connect 3 0 0 0;
