@@ -1,16 +1,16 @@
-#N canvas 379 273 522 311 10;
+#N canvas 0 22 522 279 10;
 #X obj 44 24 inlet;
-#X obj 44 76 *;
-#X obj 44 143 > 0.4;
-#X obj 44 165 change;
-#X obj 44 187 sel 1;
-#X obj 44 209 t b b b;
-#X obj 44 281 outlet;
-#X obj 63 253 pipe 180;
-#X obj 63 231 0.42;
-#X obj 96 231 30;
-#X obj 44 121 tanh;
-#X obj 44 98 slide.cs 1 5;
+#X obj 44 46 *;
+#X obj 44 113 > 0.4;
+#X obj 44 135 change;
+#X obj 44 157 sel 1;
+#X obj 44 179 t b b b;
+#X obj 44 251 outlet;
+#X obj 63 223 pipe 180;
+#X obj 63 201 0.42;
+#X obj 96 201 30;
+#X obj 44 91 tanh;
+#X obj 44 68 slide.cs 1 5;
 #X text 86 24 gyrodelta_all;
 #N canvas 1143 411 358 172 header 0;
 #X obj 2 2 cnv 15 300 60 empty empty geps.transTrigger 10 12 0 12 -240757
@@ -20,8 +20,8 @@
 #X obj 2 64 geps.abstraction-header;
 #X coords 0 -1 1 1 304 130 1 0 0;
 #X restore 191 20 pd header;
-#X obj 44 50 * 8;
-#X connect 0 0 14 0;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
 #X connect 1 0 11 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
@@ -34,5 +34,3 @@
 #X connect 9 0 2 1;
 #X connect 10 0 2 0;
 #X connect 11 0 10 0;
-#X connect 14 0 1 0;
-#X connect 14 0 1 1;
