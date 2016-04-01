@@ -1,5 +1,5 @@
 #include "I2Cdev.h"
-#include "MPU6050.h"
+#include "MPU9150.h"
 
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
 #include "Wire.h"
@@ -7,14 +7,20 @@
 
 ///// INITIALIZE //////
 // MPU
-MPU6050 accelgyro;
+MPU9150 mpu;
 
-// the 6 values of the MPU 
+// the 6 values of the MPU
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
 
+// bit startpoint for parsing the serial data
+uint8_t start = 255;
 
-///// BLUETOOTH START //////
+// MSB/LSB variables for encapsulation
+uint8_t msbax, lsbax, msbay, lsbay, msbaz, lsbaz;
+uint8_t msbgx, lsbgx, msbgy, lsbgy, msbgz, lsbgz;
+
+///// XBEE SERIAL CONNECTION //////
 // Include the software serial port library
 #include <SoftwareSerial.h>
 
@@ -25,9 +31,7 @@ int16_t gx, gy, gz;
 #define BT_SERIAL_RX_DIO 11
 
 // Initialise the software serial port
-SoftwareSerial BluetoothSerial(BT_SERIAL_TX_DIO, BT_SERIAL_RX_DIO);
-
-////// BLUETOOTH END ///////
+SoftwareSerial XBeeSerial(BT_SERIAL_TX_DIO, BT_SERIAL_RX_DIO);
 
 void setup()
 {
@@ -37,62 +41,72 @@ void setup()
 	#elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
 	Fastwire::setup(400, true);
 	#endif
-	
+
 	// begin Software Serial Port
-	BluetoothSerial.begin(38400);
-	Serial.begin(38400);
-	
+	XBeeSerial.begin(38400);
+
 	// initialize device
-	accelgyro.initialize();
-	
-	accelgyro.setFullScaleGyroRange(32768);
+	mpu.initialize();
 
-	// accelgyro.setFullScaleAccelRange(MPU6050_ACCEL_FS_16);
+	mpu.setFullScaleGyroRange(MPU9150_GYRO_FS_2000); // default: MPU6050_GYRO_FS_250
+	mpu.setFullScaleAccelRange(MPU9150_ACCEL_FS_8);
 }
-
-// bit startpoint for parsing the serial data
-int8_t start = 255;
 
 void loop()
 {
 	// read raw accel/gyro measurements from device
-	accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+	mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 	
-	// values between -32768 and 32768 now go from 0 to 65536
+	// convert sensor values from int to uint (0...65535)
 	ax += 32768;
 	ay += 32768;
 	az += 32768;
-
-	gx *= 0.99;		
-	gy *= 0.99;		
-	gz *= 0.99;		
  			 	
 	gx += 32768;
 	gy += 32768;
 	gz += 32768;
-	
-	if (ax != 65535 && ay != 65535 && az != 65535)
-	// 65535 is reserved for startpoint
-	{
-		BluetoothSerial.write((uint8_t) (start)   ); BluetoothSerial.write((uint8_t) (start)    );
-		BluetoothSerial.write((uint8_t) (ax >> 8) ); BluetoothSerial.write((uint8_t) (ax & 255) );
-		BluetoothSerial.write((uint8_t) (ay >> 8) ); BluetoothSerial.write((uint8_t) (ay & 255) );
-		BluetoothSerial.write((uint8_t) (az >> 8) ); BluetoothSerial.write((uint8_t) (az & 255) );
-		BluetoothSerial.write((uint8_t) (gx >> 8) ); BluetoothSerial.write((uint8_t) (gx & 255) );
-		BluetoothSerial.write((uint8_t) (gy >> 8) ); BluetoothSerial.write((uint8_t) (gy & 255) );
-		BluetoothSerial.write((uint8_t) (gz >> 8) ); BluetoothSerial.write((uint8_t) (gz & 255) );
+
+	// cut off highest values (2^16-1, reserved for the "start" bytes)
+	if (ax == 65535) ax = 65534;
+	if (ay == 65535) ay = 65534;
+	if (az == 65535) az = 65534;
+
+	if (gx == 65535) gx = 65534;
+	if (gy == 65535) gy = 65534;
+	if (gz == 65535) gz = 65534;
+
+	// send int16_t as 2 int8_ts for transmission and inhibit consecutive 255 bytes
+	msbax = (uint8_t)(ax >> 8); lsbax = (uint8_t)(ax & 255);
+	msbay = (uint8_t)(ay >> 8); lsbay = (uint8_t)(ay & 255);
+	if(lsbax == 255 && msbay == 255) {
+		lsbax = 254;
 	}
-	
-	if (ax != 65535 && ay != 65535 && az != 65535)
-	// 65535 is reserved for startpoint
-	//&& gx != 65535 && gy != 65535 && gz != 65535)
-	{
-		Serial.write((uint8_t)(start)); Serial.write((uint8_t)(start));
-		Serial.write((uint8_t)(ax >> 8)); Serial.write((uint8_t)(ax & 255));
-		Serial.write((uint8_t)(ay >> 8)); Serial.write((uint8_t)(ay & 255));
-		Serial.write((uint8_t)(az >> 8)); Serial.write((uint8_t)(az & 255));
-		Serial.write((uint8_t)(gx >> 8)); Serial.write((uint8_t)(gx & 255));
-		Serial.write((uint8_t)(gy >> 8)); Serial.write((uint8_t)(gy & 255));
-		Serial.write((uint8_t)(gz >> 8)); Serial.write((uint8_t)(gz & 255));
+	msbaz = (uint8_t)(az >> 8); lsbaz = (uint8_t)(az & 255);
+	if(lsbay == 255 && msbaz == 255) {
+		lsbay = 254;
 	}
+	msbgx = (uint8_t)(gx >> 8); lsbgx = (uint8_t)(gx & 255);
+	if(lsbaz == 255 && msbgx == 255) {
+		lsbaz = 254;
+	}
+	msbgy = (uint8_t)(gy >> 8); lsbgy = (uint8_t)(gy & 255);
+	if(lsbgx == 255 && msbgy == 255) {
+		lsbgx = 254;
+	}
+	msbgz = (uint8_t)(gz >> 8); lsbgz = (uint8_t)(gz & 255);
+	if(lsbgy == 255 && msbgz == 255) {
+		lsbgy = 254;
+	}
+	if(lsbgz == 255) {
+		lsbgz = 254;
+	}
+
+	// transmit values
+	XBeeSerial.write(start); XBeeSerial.write(start);
+	XBeeSerial.write(msbax); XBeeSerial.write(lsbax);
+	XBeeSerial.write(msbay); XBeeSerial.write(lsbay);
+	XBeeSerial.write(msbaz); XBeeSerial.write(lsbaz);
+	XBeeSerial.write(msbgx); XBeeSerial.write(lsbgx);
+	XBeeSerial.write(msbgy); XBeeSerial.write(lsbgy);
+	XBeeSerial.write(msbgz); XBeeSerial.write(lsbgz);
 }
