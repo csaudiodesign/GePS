@@ -20,7 +20,6 @@
 #X obj 2 64 geps.abstraction-header;
 #X coords 0 -1 1 1 304 130 1 0 0;
 #X restore 191 20 pd header;
-#X text 202 198 TODO: data visualisation;
 #X connect 0 0 1 0;
 #X connect 0 0 1 1;
 #X connect 1 0 11 0;
