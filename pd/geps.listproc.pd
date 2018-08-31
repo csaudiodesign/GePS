@@ -7,7 +7,7 @@
 #X obj 51 258 pack f f;
 #X obj 17 21 inlet;
 #X obj 80 21 inlet;
-#X obj 17 144 list-tabdump xxx;
+#X obj 17 144 list-abs/list-tabdump xxx;
 #X obj 51 280 outlet;
 #X text 193 20 GePS: proccess list for sensor data display;
 #X obj 132 20 inlet;

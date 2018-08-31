@@ -1,4 +1,5 @@
 #N canvas 603 66 385 401 10;
+#X declare -lib cyclone;
 #X obj 275 292 geps.sensorsim;
 #X floatatom 315 270 5 0 0 0 - - -, f 5;
 #X obj 275 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -613,6 +614,7 @@ empty 17 7 0 10 -232576 -1 -45076 0 1;
 #X obj 322 139 comment 0 14 Monaco ? 0 0 0 0 Performance;
 #X obj 542 139 comment 0 14 Monaco ? 0 0 0 0 Modules;
 #X obj 71 38 loadbang;
+#X obj 566 15 declare -lib cyclone;
 #X connect 14 0 7 0;
 #X connect 14 0 1 0;
 #X connect 14 0 2 0;
