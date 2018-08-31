@@ -2,7 +2,7 @@
 #X obj 61 138 t f f f f f;
 #X obj 16 194 spigot 0;
 #X obj 306 175 switch~;
-#X obj 306 155 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 306 155 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 306 135 r sp-dsp;
 #X text 305 192 proc switch;
@@ -10,7 +10,7 @@
 #X obj 428 155 sel 0 1;
 #X obj 40 70 cnv 15 160 60 label-freezer-snd label-freezer-rcv GePS_FREEZER
 20 12 0 12 -24198 -33289 0;
-#X obj 61 97 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 61 97 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X text 81 96 turn module on/off;
 #X obj 216 80 route switch;
@@ -52,11 +52,11 @@
 -1 -1 3200 0;
 #X obj 350 0 hsl 60 18 0.11 1.1 0 1 empty empty roomsize 2 9 1 12 -261689
 -1 -1 2800 0;
-#X floatatom 320 4 3 0 0 0 - - -;
-#X floatatom 320 49 3 0 0 0 - - -;
-#X floatatom 320 94 3 0 0 0 - - -;
-#X floatatom 320 137 3 0 0 0 - - -;
-#X floatatom 320 181 3 0 0 0 - - -;
+#X floatatom 320 4 3 0 0 0 - - -, f 3;
+#X floatatom 320 49 3 0 0 0 - - -, f 3;
+#X floatatom 320 94 3 0 0 0 - - -, f 3;
+#X floatatom 320 137 3 0 0 0 - - -, f 3;
+#X floatatom 320 181 3 0 0 0 - - -, f 3;
 #X obj -17 -55 inlet~;
 #X obj 34 -55 inlet~;
 #X obj 148 -55 inlet;

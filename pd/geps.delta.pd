@@ -1,9 +1,9 @@
-#N canvas 0 22 450 300 10;
-#X obj 9 -236 t f f;
-#X obj 9 -212 - 0;
-#X obj 9 -190 outlet;
-#X obj 9 -259 inlet;
-#X text 69 -261 GePS sensor value delta;
+#N canvas 0 22 230 110 10;
+#X obj 10 34 t f f;
+#X obj 10 58 - 0;
+#X obj 10 80 outlet;
+#X obj 10 10 inlet;
+#X text 69 10 GePS sensor value delta;
 #X connect 0 0 1 1;
 #X connect 0 1 1 0;
 #X connect 1 0 2 0;

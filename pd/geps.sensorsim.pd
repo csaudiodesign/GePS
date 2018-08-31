@@ -1,5 +1,5 @@
 #N canvas 477 441 371 295 10;
-#X obj 69 47 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 69 47 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 96 162 random 255;
 #X obj 69 93 counter 6;
