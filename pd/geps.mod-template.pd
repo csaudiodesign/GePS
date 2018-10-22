@@ -24,7 +24,7 @@
 -1;
 #X msg 204 364 speed \$1;
 #X msg 35 365 open;
-#X floatatom 204 343 5 0 0 0 - - -, f 5;
+#X floatatom 204 343 5 0 0 0 - - -;
 #X msg 71 365 read sounds/bowl.aif;
 #X text 109 218 receive sensor data;
 #X text 166 299 stretch release of movement;

@@ -172,8 +172,8 @@
 #X obj 383 463 - 100;
 #X obj 383 441 i;
 #X obj 438 463 1;
-#X floatatom 348 317 5 0 0 0 - - -, f 5;
-#X floatatom 438 316 5 0 0 0 - - -, f 5;
+#X floatatom 348 317 5 0 0 0 - - -;
+#X floatatom 438 316 5 0 0 0 - - -;
 #X obj 676 120 512;
 #X obj 637 56 table windowArray 512;
 #X obj 410 388 t f b;

@@ -1,7 +1,7 @@
 #N canvas 603 66 385 401 10;
 #X declare -lib cyclone;
 #X obj 275 292 geps.sensorsim;
-#X floatatom 315 270 5 0 0 0 - - -, f 5;
+#X floatatom 315 270 5 0 0 0 - - -;
 #X obj 275 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 356 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -159,13 +159,13 @@ label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 #X obj 97 330 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 64 357 spigot;
-#X floatatom 64 379 5 0 0 0 - - -, f 5;
+#X floatatom 64 379 5 0 0 0 - - -;
 #X obj 200 69 delay 1000;
 #X obj 173 45 t b b;
 #X obj 382 442 != 65535;
 #X obj 383 465 sel 1;
 #X obj 383 487 counter;
-#X floatatom 383 508 5 0 0 0 - - -, f 5;
+#X floatatom 383 508 5 0 0 0 - - -;
 #X msg 447 433 0;
 #X obj 382 420 spigot;
 #X obj 415 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -232,13 +232,13 @@ label \, color 13 \; serial.portmsg-rcv color 13 \, label \; buttongate
 #X connect 46 0 41 0;
 #X connect 47 0 46 1;
 #X restore 133 53 pd SerialByteParse7;
-#X floatatom 151 175 5 0 0 0 - - -, f 5;
-#X floatatom 170 205 5 0 0 0 - - -, f 5;
-#X floatatom 188 235 5 0 0 0 - - -, f 5;
-#X floatatom 133 145 5 0 0 0 - - -, f 5;
-#X floatatom 207 265 5 0 0 0 - - -, f 5;
-#X floatatom 225 295 5 0 0 0 - - -, f 5;
-#X floatatom 244 325 5 0 0 0 - - -, f 5;
+#X floatatom 151 175 5 0 0 0 - - -;
+#X floatatom 170 205 5 0 0 0 - - -;
+#X floatatom 188 235 5 0 0 0 - - -;
+#X floatatom 133 145 5 0 0 0 - - -;
+#X floatatom 207 265 5 0 0 0 - - -;
+#X floatatom 225 295 5 0 0 0 - - -;
+#X floatatom 244 325 5 0 0 0 - - -;
 #X text 95 143 start;
 #X text 95 173 a_x;
 #X obj 151 384 s accel_x;

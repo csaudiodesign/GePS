@@ -52,11 +52,11 @@
 -1 -1 3200 0;
 #X obj 350 0 hsl 60 18 0.11 1.1 0 1 empty empty roomsize 2 9 1 12 -261689
 -1 -1 2800 0;
-#X floatatom 320 4 3 0 0 0 - - -, f 3;
-#X floatatom 320 49 3 0 0 0 - - -, f 3;
-#X floatatom 320 94 3 0 0 0 - - -, f 3;
-#X floatatom 320 137 3 0 0 0 - - -, f 3;
-#X floatatom 320 181 3 0 0 0 - - -, f 3;
+#X floatatom 320 4 3 0 0 0 - - -;
+#X floatatom 320 49 3 0 0 0 - - -;
+#X floatatom 320 94 3 0 0 0 - - -;
+#X floatatom 320 137 3 0 0 0 - - -;
+#X floatatom 320 181 3 0 0 0 - - -;
 #X obj -17 -55 inlet~;
 #X obj 34 -55 inlet~;
 #X obj 148 -55 inlet;
