@@ -11,9 +11,10 @@ For more information: <http://geps.synack.ch>
 Since version 4.2, the pure data GePS application is compatible with __vanilla Pd__ (tested with Pd-0.48.1).
 The application depends on libraries, abstractions and externals from 3rd party developers, which have to be installed before using this application:
 
-- cyclone
-- list-abs
-- freeverb~
+- [comport](https://git.iem.at/pd/comport)
+- [cyclone](https://github.com/porres/pd-cyclone)
+- [freeverb~](https://github.com/electrickery/pd-freeverb)
+- [list-abs](https://github.com/pd-externals/list-abs)
 
 Since Pd-0.48 you can use the built-in deken plugin to install these dependencies (menu "Help/Find Externals...").
 
